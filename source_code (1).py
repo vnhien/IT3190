@@ -22,21 +22,18 @@ X=np.vstack(X[:,:]).astype(np.float)
 
 test_size = 0.2 # Có thể thay đổi để thí nghiệm
 
-#split dataset into training set and testing set
-
-X_train,X_test,y_train,y_test=train_test_split(X,y,test_size=test_size)
+#Tách dataset
+X_train,X_test,y_train,y_test=train_test_split(X,y,test_size=test_size,random_state = 42)
 
 #Scaling
 ss=StandardScaler()
 X_train=ss.fit_transform(X_train)
 X_test=ss.transform(X_test)
-
+#training
 classifier=GaussianNB()
-
 classifier.fit(X_train,y_train)
-
+#Đánh giá hiệu năng
 y_pred=classifier.predict(X_test)
-
 true_pos=0
 false_pos=0
 true_neg=0
